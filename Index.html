@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <!-- javascript -->
+  <script>
+    //method that adds a row, called in Code.gs
+  function AddRow()
+  {
+    var location = getRadioValue("location");
+    var adults = document.getElementById("adults").value;
+    var children = document.getElementById("children").value;
+    var repeat = getRadioValue("repeat");
+    var ethnicity = document.getElementById("ethnicity").value;
+
+    // calls method to add record of variables
+    google.script.run.AddRecord(location, adults, children, repeat, ethnicity);
+          document.getElementById("Mattie Williams").checked = false;
+          document.getElementById("Clearwater MLK").checked = false;
+          document.getElementById("Thyme and Bloom").checked = false;
+          document.getElementById("Pinellas Hope").checked = false;
+          document.getElementById("Ready for Life").checked = false;
+          document.getElementById("Other").checked = false;
+          document.getElementById("adults").value = 0;
+          document.getElementById("children").value = 0;
+          document.getElementById("Yes").checked = false;
+          document.getElementById("No").checked = false;
+          document.getElementById("ethnicity").value = "";
+  }
+  //method that returns value of type radio
+  function getRadioValue(theRadioGroup)
+  {
+    var elements = document.getElementsByName(theRadioGroup);
+    for (var i = 0, l = elements.length; i < l; i++)
+    {
+      if (elements[i].checked)
+      {
+        return elements[i].value;
+      }
+    }
+  }
+  </script>
+  <!-- link to css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <head>
+      <base target="_top">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-6" style="border: solid #32CD32;">
+                    <form id="myForm" onsubmit="handleFormSubmit(this)">
+                        <p class="h1 mb-4 text-center">360 Eats Distribution Details</p>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <p>Location</p>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="location" id="Mattie Williams" value="Mattie Williams">
+                                    <label class="form-check-label" for="Mattie Williams">Mattie Williams</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="location" id="Clearwater MLK" value="Clearwater MLK">
+                                    <label class="form-check-label" for="Clearwater MLK">Clearwater MLK</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="location" id="Thyme and Bloom" value="Thyme and Bloom">
+                                    <label class="form-check-label" for="Thyme and Bloom">Thyme and Bloom</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="location" id="Pinellas Hope" value="Pinellas Hope">
+                                    <label class="form-check-label" for="Pinellas Hope">Pinellas Hope</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="location" id="Ready for Life" value="Ready for Life">
+                                    <label class="form-check-label" for="Ready for Life">Ready for Life</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="location" id="Other" value="Other">
+                                    <label class="form-check-label" for="Other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="adults">Number of Adults</label>
+                                <input type="number" class="form-control" id="adults" name="adults" placeholder="Number of Adults">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="children">Number of Children</label>
+                                <input type="number" class="form-control" id="children" name="children" placeholder="Number of Children">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <p>Repeat</p>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="repeat" id="Yes" value="Yes">
+                                    <label class="form-check-label" for="Yes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="repeat" id="No" value="No">
+                                    <label class="form-check-label" for="No">No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="ethnicity">Ethnicity</label>
+                                <input type="text" class="form-control" id="ethnicity" name="ethnicity" placeholder="Ethnicity">
+                            </div>
+                        </div>
+
+                        <input type="button" value="Submit" onclick="AddRow()" />
+                    </form>
+                    <div id="output"></div>
+                </div>
+            </div>      
+        </div>
+    </body>
+</html>
